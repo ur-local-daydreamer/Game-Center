@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Arcade Game Center</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+  <main class="app-shell">
+    <aside class="side-panel" aria-label="Game launcher">
+      <div class="brand">
+        <span class="brand-mark">GC</span>
+        <div>
+          <p class="eyebrow">Neon Arcade</p>
+          <h1>Game Center</h1>
+        </div>
+      </div>
+
+      <nav class="game-list" aria-label="Games">
+        <button class="game-tab active" data-game="snake">
+          <span>Snake</span>
+          <small>Classic reflex maze</small>
+        </button>
+        <button class="game-tab" data-game="twenty48">
+          <span>2048</span>
+          <small>Number fusion grid</small>
+        </button>
+        <button class="game-tab" data-game="slice">
+          <span>Slice Master</span>
+          <small>Arcade blade challenge</small>
+        </button>
+        <button class="game-tab" data-game="cookie">
+          <span>Cookie Clicker</span>
+          <small>Idle sugar empire</small>
+        </button>
+        <button class="game-tab" data-game="tetris">
+          <span>Tetris</span>
+          <small>Falling block stacker</small>
+        </button>
+      </nav>
+
+      <section class="cabinet-card">
+        <p class="eyebrow">High Scores</p>
+        <div class="high-score-list" aria-label="High scores">
+          <div><span>Snake</span><strong data-high-score="snake">0</strong></div>
+          <div><span>2048</span><strong data-high-score="twenty48">0</strong></div>
+          <div><span>Slice Master</span><strong data-high-score="slice">0</strong></div>
+          <div><span>Cookie Clicker</span><strong data-high-score="cookie">0</strong></div>
+          <div><span>Tetris</span><strong data-high-score="tetris">0</strong></div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="play-area">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">Browser Arcade</p>
+          <h2 id="active-title">Snake</h2>
+        </div>
+        <div class="score-strip" aria-label="Current score">
+          <span>Score</span>
+          <strong id="score-readout">0</strong>
+        </div>
+      </header>
+
+      <section class="game-stage active" id="snake" aria-labelledby="snake-title">
+        <div class="game-info">
+          <h3 id="snake-title">Snake</h3>
+          <p>Use arrow keys or WASD. Eat neon cells, avoid your own trail, and grow the circuit.</p>
+          <div class="controls">
+            <button id="snake-start">Start</button>
+            <button id="snake-reset">Reset</button>
+            <button class="fullscreen-button" data-fullscreen="snake">Fullscreen</button>
+          </div>
+        </div>
+        <canvas id="snake-canvas" width="420" height="420" aria-label="Snake game board"></canvas>
+        <div class="game-over" data-game-over="snake"><strong>Game Over</strong></div>
+      </section>
+
+      <section class="game-stage" id="twenty48" aria-labelledby="twenty48-title">
+        <div class="game-info">
+          <h3 id="twenty48-title">2048</h3>
+          <p>Slide tiles with arrow keys or WASD. Match equal numbers until the board becomes electric.</p>
+          <div class="controls">
+            <button id="new-2048">New Game</button>
+            <button class="fullscreen-button" data-fullscreen="twenty48">Fullscreen</button>
+          </div>
+        </div>
+        <div class="board-2048" id="board-2048" aria-label="2048 board"></div>
+        <div class="game-over" data-game-over="twenty48"><strong>Game Over</strong></div>
+      </section>
+
+      <section class="game-stage" id="slice" aria-labelledby="slice-title">
+        <div class="game-info">
+          <h3 id="slice-title">Slice Master</h3>
+          <p>Drag across glowing targets to chain slices. Bombs steal points, and three missed targets ends the round.</p>
+          <div class="controls">
+            <button id="slice-start">Start Round</button>
+            <button id="slice-reset">Reset</button>
+            <button class="fullscreen-button" data-fullscreen="slice">Fullscreen</button>
+          </div>
+        </div>
+        <canvas id="slice-canvas" width="560" height="420" aria-label="Slice Master target field"></canvas>
+        <div class="game-over" data-game-over="slice"><strong>Game Over</strong></div>
+      </section>
+
+      <section class="game-stage" id="cookie" aria-labelledby="cookie-title">
+        <div class="game-info">
+          <h3 id="cookie-title">Cookie Clicker</h3>
+          <p>Click the reactor cookie, buy upgrades, and turn crumbs into a cosmic bakery engine.</p>
+          <div class="controls">
+            <button id="cookie-reset">Reset Bakery</button>
+            <button class="fullscreen-button" data-fullscreen="cookie">Fullscreen</button>
+          </div>
+        </div>
+        <div class="cookie-lab">
+          <button class="cookie-core" id="cookie-button" aria-label="Click cookie">
+            <span></span>
+          </button>
+          <div class="shop">
+            <div class="bakery-stats">
+              <span>Cookies</span>
+              <strong id="cookie-count">0</strong>
+              <small><b id="click-power">1</b>/click · <b id="auto-power">0</b>/sec</small>
+            </div>
+            <button class="upgrade-button" data-upgrade="cursor">Cursor <small>+1 per click · Cost <b data-cost="cursor">25</b> · Owned <b data-owned="cursor">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="spatula">Golden Spatula <small>+5 per click · Cost <b data-cost="spatula">90</b> · Owned <b data-owned="spatula">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="autoClicker">Auto-Clicker <small>+2 per second · Cost <b data-cost="autoClicker">40</b> · Owned <b data-owned="autoClicker">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="baker">Baker <small>+4 per second · Cost <b data-cost="baker">80</b> · Owned <b data-owned="baker">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="bakerCrew">Baker Crew <small>+18 per second · Cost <b data-cost="bakerCrew">260</b> · Owned <b data-owned="bakerCrew">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="oven">Neon Oven <small>+10 per second · Cost <b data-cost="oven">180</b> · Owned <b data-owned="oven">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="strongOven">Stronger Oven <small>+45 per second · Cost <b data-cost="strongOven">550</b> · Owned <b data-owned="strongOven">0</b></small></button>
+            <button class="upgrade-button" data-upgrade="factory">Cookie Factory <small>+140 per second · Cost <b data-cost="factory">1600</b> · Owned <b data-owned="factory">0</b></small></button>
+          </div>
+        </div>
+        <div class="game-over" data-game-over="cookie"><strong>Game Over</strong></div>
+      </section>
+
+      <section class="game-stage" id="tetris" aria-labelledby="tetris-title">
+        <div class="game-info">
+          <h3 id="tetris-title">Tetris</h3>
+          <p>Move with arrows or WASD. Up rotates, down soft-drops, and Space hard-drops.</p>
+          <div class="controls">
+            <button id="tetris-start">Start</button>
+            <button id="tetris-reset">Reset</button>
+            <button class="fullscreen-button" data-fullscreen="tetris">Fullscreen</button>
+          </div>
+        </div>
+        <canvas id="tetris-canvas" width="300" height="600" aria-label="Tetris board"></canvas>
+        <div class="game-over" data-game-over="tetris"><strong>Game Over</strong></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
